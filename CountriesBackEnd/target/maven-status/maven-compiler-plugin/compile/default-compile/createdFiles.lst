@@ -1,0 +1,5 @@
+com/progra/countries/logic/Country.class
+com/progra/countries/resources/Countries.class
+com/progra/countries/logic/Service.class
+com/progra/countries/JakartaRestConfiguration.class
+com/progra/countries/resources/JakartaEE10Resource.class
