@@ -66,10 +66,45 @@ class Countries{
                     </div>
                     <form id="form" >
                     <div class="modal-body">
-                        <h1>T</h1>       
+                        <h2>Crear País</h2>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" class="form-control" id="name" name="name" required><br><br>
+                        </div> 
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Capital</span>
+                            <input type="text" class="form-control" id="capital" name="capital" required><br><br>
+                        </div> 
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Poblacion</span>
+                            <input type="number" id="population" name="population" required><br><br>
+                        </div> 
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Area</span>
+                            <input type="number" id="area" name="area" required><br><br>
+                        </div> 
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Latitud </span>
+                            <input type="text" class="form-control" id="lat" name="lat" required><br><br>
+                        </div> 
+                        
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Longitud</span>
+                            <input type="text" class="form-control" id="lng" name="lng" required><br><br>
+                        </div> 
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Bandera</span>
+                            <input type="text" id="flag" name="flag" required><br><br>
+                        </div> 
+            
                     </div>
                     <div class="modal-footer">
-                        <button id="apply" type="button" class="btn btn-primary" >Aplicar</button>
+                        <button id="apply" type="button" class="btn btn-primary" >Agregar</button>
                     </div>
                     </form>                 
                 </div>         
@@ -96,12 +131,45 @@ class Countries{
     }
 
 
-  add=()=>{
-      // Validate data, load into entity, invoque backend for adding
-    this.list();
-    this.reset();
-    this.modal.hide();
-  } 
+add = async  () => {
+        // Validate data, load into entity, invoque backend for adding
+
+        var name = document.querySelector('#countries #modal #form #name').value;
+        var capital = document.querySelector('#countries #modal #form #capital').value;
+        var population = document.querySelector('#countries #modal #form #population').value;
+        var area = document.querySelector('#countries #modal #form #area').value;
+        var lat = parseFloat(document.querySelector('#countries #modal #form #lat').value);
+        var lng = parseFloat(document.querySelector('#countries #modal #form #lng').value);
+        let latlng = [lat, lng];
+        var flag = document.querySelector('#countries #modal #form #flag').value;
+        
+        const data = {
+            name : name,
+            capital : capital,
+            population : population,
+            area : area,
+            latlng : latlng,
+            flag : flag
+        };
+
+        let request = new Request(`${backend}/countries`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        let response = await fetch(request);
+        if (!response.ok) {
+            errorMessage(response.status);
+            return;
+        }
+
+        this.list();
+        this.reset();
+        this.modal.hide();
+    }
   
   update=()=>{
     // Validate data, load into entity, invoque backend for updating    
