@@ -28,6 +28,8 @@ public class Country implements Serializable{
         this.latlng = latlng;
         this.flag = flag;
     }
+    
+    public Country(){}
 
     public String getName() {
         return name;

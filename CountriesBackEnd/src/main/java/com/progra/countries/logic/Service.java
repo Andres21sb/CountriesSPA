@@ -35,6 +35,21 @@ public class Service {
 
         c=new Country("Belize", "Belmopan", 370300, 22966, new ArrayList<>(Arrays.asList(new Integer[]{17,-88})), "https://flagcdn.com/bo.svg");
         countries.put(c.name, c);
+        
+        c = new Country("Brazil", "Brasília", 209288278, 8515767, new ArrayList<>(Arrays.asList(new Integer[]{-15, -47})), "https://flagcdn.com/br.svg");
+        countries.put(c.name, c);
+
+        c = new Country("Chile", "Santiago", 19107216, 756102, new ArrayList<>(Arrays.asList(new Integer[]{-33, -70})), "https://flagcdn.com/cl.svg");
+        countries.put(c.name, c);
+
+    c = new Country("Colombia", "Bogotá", 50372424, 1141748, new ArrayList<>(Arrays.asList(new Integer[]{4, -74})), "https://flagcdn.com/co.svg");
+    countries.put(c.name, c);
+
+    c = new Country("Peru", "Lima", 32510453, 1285216, new ArrayList<>(Arrays.asList(new Integer[]{-10, -76})), "https://flagcdn.com/pe.svg");
+    countries.put(c.name, c);
+
+    c = new Country("Uruguay", "Montevideo", 3461734, 176215, new ArrayList<>(Arrays.asList(new Integer[]{-34, -56})), "https://flagcdn.com/uy.svg");
+    countries.put(c.name, c);
     }
 
     public Country read(String name)throws Exception{
@@ -49,7 +64,11 @@ public class Service {
                 collect(Collectors.toList());
     }
     
-    public void delete(String name){
-        countries.remove(name);
+    public void delete(String name) {
+    countries.remove(name);
     }
+    
+    public void add(Country country) {
+    countries.put(country.getName(), country);
+}
 }
