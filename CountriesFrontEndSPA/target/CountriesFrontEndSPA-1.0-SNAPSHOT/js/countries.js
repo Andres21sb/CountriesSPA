@@ -136,8 +136,8 @@ add = async  () => {
 
         var name = document.querySelector('#countries #modal #form #name').value;
         var capital = document.querySelector('#countries #modal #form #capital').value;
-        var population = document.querySelector('#countries #modal #form #population').value;
-        var area = document.querySelector('#countries #modal #form #area').value;
+        var population = parseFloat(document.querySelector('#countries #modal #form #population').value);
+        var area = parseFloat(document.querySelector('#countries #modal #form #area').value);
         var lat = parseFloat(document.querySelector('#countries #modal #form #lat').value);
         var lng = parseFloat(document.querySelector('#countries #modal #form #lng').value);
         let latlng = [lat, lng];
@@ -151,8 +151,9 @@ add = async  () => {
             latlng : latlng,
             flag : flag
         };
+        console.log(JSON.stringify(data));
 
-        let request = new Request(`${backend}/countries`, {
+        let request = new Request(`${backend}/countries/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -165,6 +166,7 @@ add = async  () => {
             errorMessage(response.status);
             return;
         }
+        console.log(JSON.stringify(response.json()));
 
         this.list();
         this.reset();
